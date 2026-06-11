@@ -3,10 +3,24 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=test tsx --test src/db/connection.test.ts",
+    "start": "tsx src/index.ts",
+    "migrate": "tsx scripts/migrate.ts",
+    "migrate:rollback": "tsx scripts/rollback.ts",
+    "migrate:make": "tsx scripts/make-migration.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "better-sqlite3": "^12.10.0",
+    "knex": "^3.2.10"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^25.9.3",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3"
+  }
 }
