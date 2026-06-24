@@ -5,7 +5,7 @@ const config: Record<string, Knex.Config> = {
   development: {
     client: 'better-sqlite3',
     connection: {
-      filename: path.join(__dirname, 'data', 'vocab.sqlite'),
+      filename: process.env.DB_PATH ?? path.join(__dirname, 'data', 'vocab.sqlite'),
     },
     useNullAsDefault: true,
     migrations: {
