@@ -8,14 +8,14 @@ const config = knexConfig[env];
 
 const connection = config.connection;
 if (connection && typeof connection === 'object' && 'filename' in connection) {
-  const filename = connection.filename as string;
-  if (filename !== ':memory:') {
-    fs.mkdirSync(path.dirname(filename), { recursive: true });
-  }
+    const filename = connection.filename as string;
+    if (filename !== ':memory:') {
+        fs.mkdirSync(path.dirname(filename), { recursive: true });
+    }
 }
 
 export const db = Knex(config);
 
 export async function runMigrations(): Promise<void> {
-  await db.migrate.latest();
+    await db.migrate.latest();
 }
