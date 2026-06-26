@@ -6,8 +6,12 @@ async function main(): Promise<void> {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const channelId = process.env.TELEGRAM_CHANNEL_ID;
 
-  if (!token) throw new Error('TELEGRAM_BOT_TOKEN is not set');
-  if (!channelId) throw new Error('TELEGRAM_CHANNEL_ID is not set');
+  if (!token) {
+    throw new Error('TELEGRAM_BOT_TOKEN is not set');
+  }
+  if (!channelId) {
+    throw new Error('TELEGRAM_CHANNEL_ID is not set');
+  }
 
   await runMigrations();
   console.log('Database ready');

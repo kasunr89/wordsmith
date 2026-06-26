@@ -12,13 +12,19 @@ export function createBot(token: string, channelId: string): Telegraf {
   const bot = new Telegraf(token);
 
   bot.on('channel_post', async (ctx) => {
-    if (String(ctx.channelPost.chat.id) !== channelId) return;
+    if (String(ctx.channelPost.chat.id) !== channelId) {
+      return;
+    }
 
     const text = 'text' in ctx.channelPost ? ctx.channelPost.text : undefined;
-    if (!text) return;
+    if (!text) {
+      return;
+    }
 
     const words = parseWords(text);
-    if (words.length === 0) return;
+    if (words.length === 0) {
+      return;
+    }
 
     const results = await Promise.all(words.map(w => insertWord(w)));
 
@@ -26,8 +32,12 @@ export function createBot(token: string, channelId: string): Telegraf {
     const known = words.filter((_, i) => results[i] === 'known');
 
     const parts: string[] = [];
-    if (saved.length > 0) parts.push(`Saved: ${saved.join(', ')}`);
-    if (known.length > 0) parts.push(`Already known: ${known.join(', ')}`);
+    if (saved.length > 0) {
+      parts.push(`Saved: ${saved.join(', ')}`);
+    }
+    if (known.length > 0) {
+      parts.push(`Already known: ${known.join(', ')}`);
+    }
 
     await ctx.telegram.sendMessage(ctx.channelPost.chat.id, parts.join(' | '));
   });
