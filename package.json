@@ -8,7 +8,8 @@
     "migrate": "tsx scripts/migrate.ts",
     "migrate:rollback": "tsx scripts/rollback.ts",
     "migrate:make": "tsx scripts/make-migration.ts",
-    "format": "prettier --write \"src/**/*.ts\""
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint src/**/*.ts"
   },
   "keywords": [],
   "author": "",
@@ -23,8 +24,10 @@
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^25.9.3",
+    "eslint": "^9.39.4",
     "prettier": "^3.8.5",
     "tsx": "^4.22.4",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.62.0"
   }
 }
